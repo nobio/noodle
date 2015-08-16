@@ -1,15 +1,21 @@
 {
-    "name"     : "noodle",
-    "version"  : "0.0.1",
-    "private"  : true,
-    "scripts"  : {
-        "start"    : "node app"
-    },
-    "dependencies": {
-        "express"  : "3.1.0",
-        "jade"     : "*",
-        "mongodb"  : "*",
-        "mongoose" : "*",
-        "connect"  : "*"
-    }
+	"name": "noodle",
+	"version": "0.0.1",
+	"private": true,
+	"scripts": {
+		"start": "node ./bin/www",
+		"test": "./node_modules/mocha/bin/mocha --recursive -R xunit test/ > test-reports.xml"
+	},
+	"dependencies": {
+		"express": "~4.2.0",
+		"mocha": "*",
+		"morgan": "~1.0.0",
+		"cookie-parser": "~1.0.1",
+		"body-parser": "~1.0.0",
+		"log": "~1.4.0",
+		"os": "*",
+		"ip": "*",
+		"request": "~2.42.0",
+		"mongoose": "~3.8.21"
+	}
 }
