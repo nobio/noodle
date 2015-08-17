@@ -5,25 +5,25 @@ var os = require("os");
 
 module.exports = {
 	api_host: function api_host() {
-		log.debug('api_host: %s - %s - %s - %s', process.env.IP, process.env.OPENSHIFT_NODEJS_IP, ip.address(), process.env.C9_HOSTNAME);
+		//log.debug('api_host: %s - %s - %s - %s', process.env.IP, process.env.OPENSHIFT_NODEJS_IP, ip.address(), process.env.C9_HOSTNAME);
 		return process.env.C9_HOSTNAME || ip.address() || process.env.IP || process.env.OPENSHIFT_NODEJS_IP;
 	},
 
 	api_port: function api_port() {
-		log.debug('api_port: %s - %s - %s', process.env.PORT, process.env.PORT, '3000');
-		return process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || '3000';
+		//log.debug('api_port: %s - %s - %s', process.env.PORT, process.env.PORT, '3000');
+		return process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || config.server.default_port;
 	},
 
 	api_protocol: function api_protocol() {
 		return (process.env.C9_HOSTNAME) ? 'https' : 'http';
 	},
 
-   api_domain: function api_domain() {
-   	if(process.env.C9_HOSTNAME) {
+    api_domain: function api_domain() {
+   		if(process.env.C9_HOSTNAME) {
 			return this.api_protocol() + '://' + this.api_host() + '/api';
-   	} else {
+   		} else {
 			return this.api_protocol() + '://' + this.api_host() + ":" + this.api_port() + '/api';
-   	}
+   		}
 	},
 
 	dump_env: function dump_env() {

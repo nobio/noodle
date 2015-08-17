@@ -18,7 +18,7 @@ mongoose.model('Event', _Event);
 var Event = mongoose.model('Event');
 
 
-var mongodb_url = 'mongodb://event:QHH-qeG-mAS-4sK@ds029901.mongolab.com:29901/event';
+var mongodb_url = config.persistence.url;
 
 var options = {
 	db: { native_parser: true },
