@@ -4,7 +4,6 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var routes = require('./src/routes/index');
 var api = require('./src/routes/api');
 
 var app = express();
@@ -18,18 +17,20 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
+app.use('/', api);
 app.use('/api', api);
 
-/// catch 404 and forward to error handler
+// default: env=development
+// Change to production, manipulate the NODE_EVN variable like:
+//   NODE_ENV=production npm start
+
+console.log('Environment: ' + app.get('env'));
+
+// catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
     err.status = 404;
-    res.render('error', {
-        message: err.message,
-        error: {}
-    });
-    //next(err);
+    next(err);
 });
 
 /// error handlers
